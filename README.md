@@ -62,8 +62,22 @@ npm start
 
 ### Base URL
 
+**Lokal utveckling:**
+
 ```
 http://localhost:3000
+```
+
+**Live deployment:**
+
+```
+https://dt207g-moment4-1-49ck.onrender.com
+```
+
+**GitHub Repository:**
+
+```
+https://github.com/ellenliden/DT207G_moment4_1.git
 ```
 
 ### Endpoints
@@ -202,6 +216,8 @@ Authorization: Bearer jwt-token-här
 
 ## Testning
 
+### Lokal testning
+
 ```bash
 # Testa grundläggande endpoint
 curl http://localhost:3000/
@@ -219,6 +235,18 @@ curl -X POST http://localhost:3000/api/auth/login \
 # Testa skyddad route (använd token från inloggning)
 curl -H "Authorization: Bearer YOUR_JWT_TOKEN" \
   http://localhost:3000/api/protected
+```
+
+### Live deployment testning
+
+```bash
+# Testa live API
+curl https://dt207g-moment4-1-49ck.onrender.com/
+
+# Testa registrering på live server
+curl -X POST https://dt207g-moment4-1-49ck.onrender.com/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"username":"liveuser","email":"live@example.com","password":"password123"}'
 ```
 
 ## Miljövariabler
@@ -243,6 +271,18 @@ Projektet använder ES6-moduler och modern JavaScript-syntax. Alla routes är st
 - **Mongoose-validering:** Säkerställer dataintegritet på databasnivå
 - **Express-validator:** Ger robust inputvalidering
 - **Modulär struktur:** Lätt att underhålla och utöka
+
+## Deployment
+
+### Render.com
+
+Denna webbtjänst är deployad på [Render.com](https://render.com) och är tillgänglig på:
+**https://dt207g-moment4-1-49ck.onrender.com**
+
+### GitHub Repository
+
+Källkoden finns tillgänglig på GitHub:
+**https://github.com/ellenliden/DT207G_moment4_1.git**
 
 ## Kontakt
 
