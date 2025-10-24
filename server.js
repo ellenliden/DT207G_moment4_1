@@ -2,7 +2,11 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
 import { config } from "./config.js";
+import authRoutes from "./routes/auth.js";
+import protectedRoutes from "./routes/protected.js";
 
 // Ladda miljövariabler
 dotenv.config();
@@ -10,8 +14,31 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || config.port;
 
-//Middleware
+// Säkerhetsmiddleware (enligt föreläsningsunderlag)
+app.use(helmet()); // Säkerhetsheaders
 app.use(cors());
+
+// Rate limiting för att förhindra brute force-attacker
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minuter
+  max: 100, // max 100 requests per IP per windowMs
+  message: {
+    success: false,
+    message: "För många förfrågningar från denna IP, försök igen senare.",
+  },
+});
+app.use(limiter);
+
+// Särskild rate limiting för auth-endpoints
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minuter
+  max: 5, // max 5 inloggningsförsök per IP per windowMs
+  message: {
+    success: false,
+    message: "För många inloggningsförsök, försök igen senare.",
+  },
+});
+
 app.use(express.json());
 
 // grundläggande route
@@ -23,9 +50,14 @@ app.get("/", (req, res) => {
       register: "POST /api/auth/register",
       login: "POST /api/auth/login",
       protected: "GET /api/protected",
+      profile: "GET /api/protected/profile",
     },
   });
 });
+
+// Routes med rate limiting för auth
+app.use("/api/auth", authLimiter, authRoutes);
+app.use("/api/protected", protectedRoutes);
 
 // Databasanslutning
 mongoose
