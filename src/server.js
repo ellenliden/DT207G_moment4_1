@@ -29,10 +29,10 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// Särskild rate limiting för auth-endpoints
+// Särskild rate limiting för auth-endpoints (ökat för utveckling)
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minuter
-  max: 5, // max 5 inloggningsförsök per IP per windowMs
+  max: 100, // max 100 försök per IP per windowMs (ökat för utveckling)
   message: {
     success: false,
     message: "För många inloggningsförsök, försök igen senare.",
