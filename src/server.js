@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
-import { config } from "./config.js";
+import { config } from "../config.js";
 import authRoutes from "./routes/auth.js";
 import protectedRoutes from "./routes/protected.js";
 

@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
-import { config } from "../../config.js";
+import { config } from "../config.js";
 
 /**
  * Middleware för JWT-autentisering
@@ -10,7 +10,7 @@ export const authenticateToken = async (req, res, next) => {
   try {
     // hämta token från Authorization header
     const authHeader = req.headers["authorization"];
-    const token = authHeader && authHeader.split(" ")[1]; 
+    const token = authHeader && authHeader.split(" ")[1];
 
     if (!token) {
       return res.status(401).json({
