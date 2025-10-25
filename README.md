@@ -71,7 +71,7 @@ http://localhost:3000
 **Live deployment:**
 
 ```
-https://dt207g-moment4-1-49ck.onrender.com
+https://dt207g-moment4-1-p1ry.onrender.com
 ```
 
 **GitHub Repository:**
@@ -241,10 +241,10 @@ curl -H "Authorization: Bearer YOUR_JWT_TOKEN" \
 
 ```bash
 # Testa live API
-curl https://dt207g-moment4-1-49ck.onrender.com/
+curl https://dt207g-moment4-1-p1ry.onrender.com/
 
 # Testa registrering på live server
-curl -X POST https://dt207g-moment4-1-49ck.onrender.com/api/auth/register \
+curl -X POST https://dt207g-moment4-1-p1ry.onrender.com/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{"username":"liveuser","email":"live@example.com","password":"password123"}'
 ```
@@ -277,7 +277,7 @@ Projektet använder ES6-moduler och modern JavaScript-syntax. Alla routes är st
 ### Render.com
 
 Denna webbtjänst är deployad på [Render.com](https://render.com) och är tillgänglig på:
-**https://dt207g-moment4-1-49ck.onrender.com**
+**https://dt207g-moment4-1-p1ry.onrender.com/**
 
 ### GitHub Repository
 
